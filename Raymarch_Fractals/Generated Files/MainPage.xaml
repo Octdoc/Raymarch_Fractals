@@ -1,0 +1,166 @@
+﻿<Page
+    x:Class="Raymarch_Fractals.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Raymarch_Fractals"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="256"/>
+        </Grid.ColumnDefinitions>
+        <SwapChainPanel x:ConnectionId='2' Grid.Column="0" x:Name="sc_fractalCanvas"/>
+        <FlipView x:ConnectionId='3' Grid.Column="1" x:Name="fv_paramSetter" Background="#FFEEDD">
+            <ScrollViewer>
+                <StackPanel Padding="10,10,10,10" Spacing="10">
+                    <TextBlock Text="Mandelbrot" FontSize="32"/>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <StackPanel>
+                            <TextBlock Text="Iterations" TextWrapping="Wrap" FontSize="20"/>
+                            <Slider x:ConnectionId='24' x:Name="sl_MBiter" Minimum="0" Maximum="1000" Value="256" StepFrequency="1"/>
+                            <TextBlock Text="Zoom" TextWrapping="Wrap" FontSize="20"/>
+                            <TextBox x:ConnectionId='25' x:Name="tb_MBzoom" IsReadOnly="True"/>
+                            <TextBlock Text="Offset" TextWrapping="Wrap" FontSize="20"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="X" FontSize="20"/>
+                                <TextBox x:ConnectionId='30' Grid.Column="1" x:Name="tb_MBoffsetX" IsReadOnly="True"/>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Y" FontSize="20"/>
+                                <TextBox x:ConnectionId='29' Grid.Column="1" x:Name="tb_MBoffsetY" IsReadOnly="True"/>
+                            </Grid>
+                            <TextBlock Text="Center" TextWrapping="Wrap" FontSize="20"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="X" FontSize="20"/>
+                                <TextBox x:ConnectionId='28' Grid.Column="1" x:Name="tb_MBcenterX" IsReadOnly="True"/>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Y" FontSize="20"/>
+                                <TextBox x:ConnectionId='27' Grid.Column="1" x:Name="tb_MBcenterY" IsReadOnly="True"/>
+                            </Grid>
+                            <TextBlock Text="f(z,c)" FontSize="20"/>
+                            <TextBox x:ConnectionId='26' x:Name="tb_MBfunction" Text="z*z+c"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer>
+                <StackPanel Padding="10,10,10,10" Spacing="10">
+                    <TextBlock Text="Newton" FontSize="32"/>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <StackPanel>
+                            <TextBlock Text="Parameters" TextWrapping="Wrap" FontSize="24"/>
+                            <TextBlock Text="Iterations" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='18' x:Name="sl_NTiter" Minimum="0" Maximum="1000" Value="256" StepFrequency="1"/>
+                            <TextBlock Text="Zoom" TextWrapping="Wrap" FontSize="16"/>
+                            <TextBox x:ConnectionId='19' x:Name="tb_NTzoom" IsReadOnly="True"/>
+                            <TextBlock Text="Step" TextWrapping="Wrap" FontSize="24"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="26"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Re" FontSize="20"/>
+                                <TextBox x:ConnectionId='23' Grid.Column="1" x:Name="tb_NTstepRe" IsReadOnly="True"/>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="26"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Im" FontSize="20"/>
+                                <TextBox x:ConnectionId='22' Grid.Column="1" x:Name="tb_NTstepIm" IsReadOnly="True"/>
+                            </Grid>
+                            <TextBlock Text="Centre" TextWrapping="Wrap" FontSize="24"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="X" FontSize="20"/>
+                                <TextBox x:ConnectionId='21' Grid.Column="1" x:Name="tb_NTcenterX" IsReadOnly="True"/>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Y " FontSize="20"/>
+                                <TextBox x:ConnectionId='20' Grid.Column="1" x:Name="tb_NTcenterY" IsReadOnly="True"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer>
+                <StackPanel Padding="10,10,10,10" Spacing="10">
+                    <TextBlock Text="3D fractals" FontSize="32"/>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <StackPanel>
+                            <TextBlock Text="Raymarching" TextWrapping="Wrap" FontSize="24"/>
+                            <TextBlock Text="Epsilon" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='14' x:Name="sl_3Depsilon" Minimum="0" Maximum="0.0001" Value="0.00001" StepFrequency="0.0000001"/>
+                            <TextBlock Text="Min distance" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='15' x:Name="sl_3DminDist" Minimum="0" Maximum="0.0001" Value="0.00001" StepFrequency="0.0000001"/>
+                            <TextBlock Text="Max distance" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='16' x:Name="sl_3DmaxDist" Minimum="0" Maximum="1000" Value="500" StepFrequency="1"/>
+                            <TextBlock Text="Max marches" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='17' x:Name="sl_3DmaxMarch" Minimum="0" Maximum="500" Value="64" StepFrequency="1"/>
+                        </StackPanel>
+                    </Border>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <StackPanel>
+                            <TextBlock Text="Lighting" TextWrapping="Wrap" FontSize="24"/>
+                            <TextBlock Text="Ambient" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='12' x:Name="sl_3Dambient" Minimum="0" Maximum="1" Value="0.5" StepFrequency="0.01"/>
+                            <TextBlock Text="Occlusion" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='13' x:Name="sl_3Docclusion" Minimum="0" Maximum="1" Value="0.75" StepFrequency="0.01"/>
+                        </StackPanel>
+                    </Border>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <StackPanel>
+                            <TextBlock Text="Parameters" TextWrapping="Wrap" FontSize="24"/>
+                            <TextBlock Text="Angle 1" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='4' x:Name="sl_3Dangle1" Minimum="-3.1416" Maximum="3.1416" Value="2.4464" StepFrequency="0.0001"/>
+                            <TextBlock Text="Angle 2" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='5' x:Name="sl_3Dangle2" Minimum="-3.1416" Maximum="3.1416" Value="0.6953" StepFrequency="0.0001"/>
+                            <TextBlock Text="Angle 3" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='6' x:Name="sl_3Dangle3" Minimum="-3.1416" Maximum="3.1416" Value="3.1416" StepFrequency="0.0001"/>
+                            <TextBlock Text="Scale" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='7' x:Name="sl_3Dscale" Minimum="-10" Maximum="10" Value="1.9672" StepFrequency="0.0001"/>
+                            <TextBlock Text="Offset X" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='8' x:Name="sl_3DoffsetX" Minimum="-10" Maximum="10" Value="1.5574" StepFrequency="0.0001"/>
+                            <TextBlock Text="Offset Y" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='9' x:Name="sl_3DoffsetY" Minimum="-10" Maximum="10" Value="3.4426" StepFrequency="0.0001"/>
+                            <TextBlock Text="Offset Z" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='10' x:Name="sl_3DoffsetZ" Minimum="-10" Maximum="10" Value="-6.4754" StepFrequency="0.0001"/>
+                            <TextBlock Text="Iterations" TextWrapping="Wrap" FontSize="16"/>
+                            <Slider x:ConnectionId='11' x:Name="sl_3Diters" Minimum="0" Maximum="64" Value="13" StepFrequency="1"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </FlipView>
+    </Grid>
+</Page>
+
